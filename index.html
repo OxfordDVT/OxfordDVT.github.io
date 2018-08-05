@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Oxford DVT Neutal Network</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/new-age.min.css" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  </head>
+  
+  <script>
+      
+      function getFormData(){
+          
+          var age=document.getElementById('age').value;
+          
+          var ddimer=document.getElementById('ddimer').value;
+          
+          if (document.getElementById('sex').checked) {
+              var sex=document.getElementById('sex').value;
+          } else if (document.getElementById('sex1').checked) {
+              var sex=document.getElementById('sex1').value;
+          }
+          
+          if (document.getElementById('cancer').checked) {
+              var cancer=document.getElementById('cancer').value;
+          } else if (document.getElementById('cancer1').checked) {
+              var cancer=document.getElementById('cancer1').value;
+          }
+          
+          if (document.getElementById('bedridden').checked) {
+              var bedridden=document.getElementById('bedridden').value;
+          } else if (document.getElementById('bedridden1').checked) {
+              var bedridden=document.getElementById('bedridden1').value;
+          }
+          
+          if (document.getElementById('calf').checked) {
+              var calf=document.getElementById('calf').value;
+          } else if (document.getElementById('calf1').checked) {
+              var calf=document.getElementById('calf1').value;
+          }
+
+          if (document.getElementById('veins').checked) {
+              var veins=document.getElementById('veins').value;
+          } else if (document.getElementById('veins1').checked) {
+              var veins=document.getElementById('veins1').value;
+          }
+          
+          if (document.getElementById('legswollen').checked) {
+              var legswollen=document.getElementById('legswollen').value;
+          } else if (document.getElementById('legswollen1').checked) {
+              var legswollen=document.getElementById('legswollen1').value;
+          }
+          
+          if (document.getElementById('tenderness').checked) {
+              var tenderness=document.getElementById('tenderness').value;
+          } else if (document.getElementById('tenderness1').checked) {
+              var tenderness=document.getElementById('tenderness1').value;
+          }
+          
+          if (document.getElementById('paralysis').checked) {
+              var paralysis=document.getElementById('paralysis').value;
+          } else if (document.getElementById('paralysis1').checked) {
+              var paralysis=document.getElementById('paralysis1').value;
+          }
+          
+          if (document.getElementById('edema').checked) {
+              var edema=document.getElementById('edema').value;
+          } else if (document.getElementById('edema1').checked) {
+              var edema=document.getElementById('edema1').value;
+          }
+          
+          if (document.getElementById('previousdvt').checked) {
+              var previousdvt=document.getElementById('previousdvt').value;
+          } else if (document.getElementById('previousdvt1').checked) {
+              var previousdvt=document.getElementById('previousdvt1').value;
+          }
+          
+          if (document.getElementById('alternative').checked) {
+              var alternative=document.getElementById('alternative').value;
+          } else if (document.getElementById('alternative1').checked) {
+              var alternative=document.getElementById('alternative1').value;
+          }
+          
+          
+          var obj = { "age":age, "ddimer":ddimer, "sex":sex, "cancer":cancer, "bedridden":bedridden, "calf":calf, "veins":veins, "legswollen":legswollen, "tenderness":tenderness, "edema":edema, "paralysis":paralysis, "previousdvt":previousdvt, "alternative":alternative};
+          var f = JSON.stringify(obj);
+
+          /* some other fields */
+          /* now call ur function by passing the above values */
+          /* createUserWithName(name, email);*/
+          
+          var xhr=new XMLHttpRequest;
+          /*xhr.open("POST", "http://localhost:8000/things", true);*/
+          xhr.open("POST", "https://testcalch.herokuapp.com/things", true);
+          xhr.setRequestHeader("Content-type", "application/json")
+          xhr.send(f);
+          
+          xhr.onreadystatechange = function() {
+              if (xhr.readyState == XMLHttpRequest.DONE) {
+                  //var res = JSON.parse(xhr.responseText)
+                  var starray = xhr.responseText.split('#@#'), res = JSON.parse(starray[0]), data1 = JSON.parse(starray[1]);
+                  var probability = res['probability']
+                  var wells_score = res['wells_score']
+                  var nice_result = res['nice_prediction']
+                  var top = "The ONN score is "
+                  //var bot = " that the patient has a DVT"
+                  top = top.concat(probability)
+                  document.getElementById("resu").innerHTML = top;
+                  top = "The patient has a Wells Score of "
+                  top = top.concat(wells_score)
+                  document.getElementById("resu1").innerHTML = top;
+                  if (nice_result==="1") {
+                      top = "NICE regulations recommend that you scan the patient"
+                  } else {
+                      top = "NICE regulations recommend that you do not scan the patient"
+                  }
+                  document.getElementById("resu2").innerHTML = top;
+                  
+                  
+                  var data = [
+                              {
+                              z: data1['z'],
+                              x: data1['y'],
+                              y: data1['x'],
+                              type: 'heatmap',
+                              colorscale: 'Viridis',
+                              zmin: 0.0,
+                              zmax: 1.0,
+                              name: "",
+                              colorbar:{
+                              title: 'ONN Score',
+                              titlefont: {color: '#000000'},
+                              titleside:'right',
+                              tickfont: {color: '#000000'}
+                              }
+                              },
+                              {
+                              x: [ddimer],
+                              y: [age],
+                              type: 'scatter',
+                              name: "Current Patient",
+                              marker: { size: 12 }
+                              }
+                              ];
+
+
+                              
+                  var layout = {
+                                  yaxis: {title: 'Age', scaleratio: 1.0, color: '#000000'},
+                                  xaxis: {title: 'D-dimer', color: '#000000'},
+                                  paper_bgcolor: 'rgba(0,0,0,0)',
+                                  plot_bgcolor: 'rgba(0,0,0,0)'
+                              }
+                  
+                  var options = {
+                      scrollZoom: false,
+                      showLink: false,
+                      modeBarButtonsToRemove: [
+                                               'sendDataToCloud',
+                                               'zoom2d',
+                                               'pan',
+                                               'pan2d',
+                                               'autoScale2d',
+                                               'lasso2d',
+                                               'autoScale2d',
+                                               'resetScale2d',
+                                               'toggleSpikelines',
+                                               'dragmode'
+                                               ]
+                  };
+                              
+                 Plotly.newPlot('myDiv', data, layout, options);
+
+              }
+          }
+          
+          
+          
+          
+      }
+      
+  </script>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#download">Download</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#features">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav> -->
+
+    <header class="masthead">
+      <div class="container h-100">
+        <div class="row h-100">
+          <div class="col-lg-7 my-auto">
+            <div class="header-content mx-auto">
+              <!--<h1 class="mb-5">New Age is an app landing page that will help you beautifully showcase your new mobile app, or anything else!</h1>
+              <a href="#download" class="btn btn-outline btn-xl js-scroll-trigger">Start Now for Free!</a>-->
+              <form>
+                  1. Sex:<br>
+                  <input id="sex" type="radio" name="sex" value="1" checked> Male
+                  <input id="sex1" type="radio" name="sex" value="0"> Female<br>
+                  2. Age:<br>
+                  <input id="age" type="text" name="age"><br>
+                  3. D-dimer:<br>
+                  <input id="ddimer" type="text" name="ddimer"><br>
+                  4. Active Cancer:<br>
+                  (Treatment or palliation within 6 months)<br>
+                  <input id="cancer" type="radio" name="cancer" value="0" checked> No
+                  <input id="cancer1" type="radio" name="cancer" value="1"> Yes<br>
+                  5. Bedridden recently >3 days or major surgery within four weeks:<br>
+                  <input id="bedridden" type="radio" name="bedridden" value="0" checked> No
+                  <input id="bedridden1" type="radio" name="bedridden" value="1"> Yes<br>
+                  6. Calf swelling >3 cm compared to the other leg:<br>
+                  (Measured 10cm below tibial tuberosity)<br>
+                  <input id="calf" type="radio" name="calf" value="0" checked> No
+                  <input id="calf1" type="radio" name="calf" value="1"> Yes<br>
+                  7. Collateral (nonvaricose) superficial veins present:<br>
+                  <input id="veins" type="radio" name="veins" value="0" checked> No
+                  <input id="veins1" type="radio" name="veins" value="1"> Yes<br>
+                  8. Entire leg swollen:<br>
+                  <input id="legswollen" type="radio" name="legswollen" value="0" checked> No
+                  <input id="legswollen1" type="radio" name="legswollen" value="1"> Yes<br>
+                  9. Localized tenderness along the deep venous system:<br>
+                  <input id="tenderness" type="radio" name="tenderness" value="0" checked> No
+                  <input id="tenderness1" type="radio" name="tenderness" value="1"> Yes<br>
+                  10. Pitting edema, confined to symptomatic leg:<br>
+                  <input id="edema" type="radio" name="edema" value="0" checked> No
+                  <input id="edema1" type="radio" name="edema" value="1"> Yes<br>
+                  11. Paralysis, paresis, or recent plaster immobilization of the lower extremity:<br>
+                  <input id="paralysis" type="radio" name="paralysis" value="0" checked> No
+                  <input id="paralysis1" type="radio" name="paralysis" value="1"> Yes<br>
+                  12. Previously documented DVT:<br>
+                  <input id="previousdvt" type="radio" name="previousdvt" value="0" checked> No
+                  <input id="previousdvt1" type="radio" name="previousdvt" value="1"> Yes<br>
+                  13. Alternative diagnosis to DVT as likely or more likely:<br>
+                  <input id="alternative" type="radio" name="alternative" value="0" checked> No
+                  <input id="alternative1" type="radio" name="alternative" value="1"> Yes<br>
+                      <input class="button" name="submit" type="submit" value="Submit" onclick="getFormData(); return false;"/>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-5 my-auto">
+            <div class="device-container">
+                <p id="resu" style="width:500px">
+                </p>
+                <p id="resu1" style="width:500px">
+                </p>
+                <p id="resu2" style="width:500px">
+                </p>
+                  <div id="myDiv" style="height:500px; width:500px"><!-- Plotly chart will be drawn inside this DIV --></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+
+    <footer>
+      <div class="container">
+        <p>&copy; Dr. Harley Katz and Dr. John Willan 2018. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/new-age.min.js"></script>
+
+  </body>
+
+</html>
