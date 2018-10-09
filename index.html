@@ -274,14 +274,17 @@
             </div>
           </div>
           <div class="col-lg-5 my-auto">
-            <div class="device-container">
+            <div class="header-content mx-auto">
                 <p id="resu" style="width:500px">
                 </p>
                 <p id="resu1" style="width:500px">
                 </p>
                 <p id="resu2" style="width:500px">
                 </p>
-                  <div id="myDiv" style="height:500px; width:500px"><!-- Plotly chart will be drawn inside this DIV --></div>
+                <p id="descrip" style="width:500px">
+                The plot below should be used to interpret the ONN score.  Given a specific value for the ONN score, if one chooses not to send the patient for an ultrasound, the black and red lines indicate the likelihood that not scanning the patient will result in a false negative.  As an example, not scanning a cohort of patients with ONN scores of 0.25 will result in a false negative rate of 1.5%.
+                </p>
+                  <div id="myDiv" style="height:500px; width:500px"><img src="FNR.png" ></div>
             </div>
           </div>
         </div>
