@@ -83,11 +83,13 @@
 							Submit
 						</button>
 					</div>
+                    <p> Please use either Chrome or Safari </p>
 				</form>
                 
                 <span class="contact3-form-subtitlex" id="resu1"></span>
                 <span class="contact3-form-subtitlex" id="resu2"></span>
                 <span class="contact3-form-subtitlex" id="resu"></span>
+                <span class="contact3-form-subtitley" id="resu3"></span>
                 <table style="width:100%" id="tab1">
                 </table>
 			</div>
@@ -268,52 +270,63 @@
                                  document.getElementById("resu1").innerHTML = ""
                                  document.getElementById("resu2").innerHTML = ""
                                  document.getElementById("tab1").innerHTML = ""
+                                 document.getElementById("resu3").innerHTML = ""
                              } else if (isNaN(ddimer)) {
                                  top = "Please use a valid D-Dimer ";
                                  document.getElementById("resu").innerHTML = top;
                                  document.getElementById("resu1").innerHTML = ""
                                  document.getElementById("resu2").innerHTML = ""
                                  document.getElementById("tab1").innerHTML = ""
+                                 document.getElementById("resu3").innerHTML = ""
                              } else if (age < 18.0) {
                                  top = "Please use an age > 18 ";
                                  document.getElementById("resu").innerHTML = top;
                                  document.getElementById("resu1").innerHTML = ""
                                  document.getElementById("resu2").innerHTML = ""
                                  document.getElementById("tab1").innerHTML = ""
+                                 document.getElementById("resu3").innerHTML = ""
                              } else if (age > 100.0) {
                                  top = "Please use an age < 100 ";
                                  document.getElementById("resu").innerHTML = top;
                                  document.getElementById("resu1").innerHTML = ""
                                  document.getElementById("resu2").innerHTML = ""
                                  document.getElementById("tab1").innerHTML = ""
+                                 document.getElementById("resu3").innerHTML = ""
                              } else if (ddimer <= 0.0) {
                                  top = "Please use a positive D-Dimer value ";
                                  document.getElementById("resu").innerHTML = top;
                                  document.getElementById("resu1").innerHTML = ""
                                  document.getElementById("resu2").innerHTML = ""
                                  document.getElementById("tab1").innerHTML = ""
+                                 document.getElementById("resu3").innerHTML = ""
                              } else if (ddimer > 50000.0) {
                                  top = "Your D-Dimer value is quite high, is this correct? ";
                                  document.getElementById("resu").innerHTML = top;
                                  document.getElementById("resu1").innerHTML = ""
                                  document.getElementById("resu2").innerHTML = ""
                                  document.getElementById("tab1").innerHTML = ""
+                                 document.getElementById("resu3").innerHTML = ""
                              } else {
                                  var top = "The ONN score is "
                                  //var bot = " that the patient has a DVT"
                                  top = top.concat(probability.toFixed(3))
+                                 top = top.concat("<br> How to interpret the ONN Score:")
                                  document.getElementById("resu").innerHTML = top;
                                  top = "The patient has a Wells Score of "
                                  top = top.concat(wells_score)
                                  document.getElementById("resu1").innerHTML = top;
                                  if (nice_result==="1") {
-                                     top = "Current practice at the Oxford Haemophilia and Thrombosis Centre is to scan this patient"
+                                     top = "Current practice at the Oxford Haemophilia and Thrombosis Centre is to scan this patient <br> <hr>"
                                  } else {
-                                     top = "Current practice at the Oxford Haemophilia and Thrombosis Centre is to not scan this patient"
+                                     top = "Current practice at the Oxford Haemophilia and Thrombosis Centre is to not scan this patient <br> <hr>"
                                  }
                                  document.getElementById("resu2").innerHTML = top;
-                                 top = "<tr><th>ONN Threshold <br> (scan if > this number)</th><th>Risk of missing DVT</th></tr><tr><td>ONN>0.02</td><td>0%</td></tr><tr><td>ONN>0.03</td><td>0%</td></tr><tr><td>ONN>0.05</td><td>0%</td></tr><tr><td>ONN>0.10</td><td>0.29%</td></tr><tr><td>ONN>0.15</td><td>0.58%</td></tr><tr><td>ONN>0.20</td><td>0.70%</td></tr>";
+                                 top = "Different thresholds of ONN score can be chosen below which patients are not scanned.  When this algorithm was tested retrospectively on 1,810 patients, we found the following rates of missed DVTs depending on the threshold chosen."
+                                 document.getElementById("resu3").innerHTML = top;
+                                 top = "<tr><th>ONN Threshold <br> (don't scan if ONN < this number)</th><th>Risk of missing DVT</th></tr><tr><td>0.02</td><td>0%</td></tr><tr><td>0.03</td><td>0%</td></tr><tr><td>0.05</td><td>0%</td></tr><tr><td>0.10</td><td>0.29%</td></tr><tr><td>0.15</td><td>0.58%</td></tr><tr><td>0.20</td><td>0.70%</td></tr>";
                                  document.getElementById("tab1").innerHTML = top;
+                                 
+                                 
                              }
         }
     
