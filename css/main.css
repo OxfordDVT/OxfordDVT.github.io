@@ -190,6 +190,18 @@ iframe {
     padding-bottom: 10px;
 }
 
+.contact3-form-subtitlex {
+    display: block;
+    font-family: Poppins-Bold;
+    font-size: 18px;
+    color: #fff;
+    line-height: 1.2;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
 .contact3-form-subsubtitle {
     display: block;
     font-family: Poppins-Bold;
