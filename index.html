@@ -1,314 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+	<title>Oxford DVT</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
 
-  <head>
+	<div class="bg-contact3" style="background-image: url('images/blur-chart.jpg');">
+		<div class="container-contact3">
+			<div class="wrap-contact3">
+                
+				<form class="contact3-form validate-form">
+					<span class="contact3-form-title">
+						Oxford Neural Network Score
+                        <span class="contact3-form-subtitle">
+                            (Willan, Katz and Keeling 2018 in press)
+                        </span>
+                        <span class="contact3-form-subsubtitle">
+                            Disclaimer: Please note that this risk assessment tool has been developed using data from a cohort of patients at a single centre in the UK. It is NOT validated for clinical use and should not be used to inform clinical decision making. This tool is intended for experimentation with theoretical cases alongside the published article, to aid understanding of the way the risk assessment tool works.
+                        </span>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+					</span>
 
-    <title>Oxford DVT Neutal Network</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-
-    <!-- Plugin CSS hh -->
-    <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
-
-    <!-- Custom styles for this template -->
-    <link href="css/new-age.min.css" rel="stylesheet">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/5.2.0/math.js"></script>
-  </head>
-  
-  <script>
-      
-      function getFormData(){
-          
-          var age=document.getElementById('age').value;
-          
-          var ddimer=document.getElementById('ddimer').value;
-          
-          if (document.getElementById('sex').checked) {
-              var sex=document.getElementById('sex').value;
-          } else if (document.getElementById('sex1').checked) {
-              var sex=document.getElementById('sex1').value;
-          }
-          
-          if (document.getElementById('cancer').checked) {
-              var cancer=document.getElementById('cancer').value;
-          } else if (document.getElementById('cancer1').checked) {
-              var cancer=document.getElementById('cancer1').value;
-          }
-          
-          if (document.getElementById('bedridden').checked) {
-              var bedridden=document.getElementById('bedridden').value;
-          } else if (document.getElementById('bedridden1').checked) {
-              var bedridden=document.getElementById('bedridden1').value;
-          }
-          
-          if (document.getElementById('calf').checked) {
-              var calf=document.getElementById('calf').value;
-          } else if (document.getElementById('calf1').checked) {
-              var calf=document.getElementById('calf1').value;
-          }
-
-          if (document.getElementById('veins').checked) {
-              var veins=document.getElementById('veins').value;
-          } else if (document.getElementById('veins1').checked) {
-              var veins=document.getElementById('veins1').value;
-          }
-          
-          if (document.getElementById('legswollen').checked) {
-              var legswollen=document.getElementById('legswollen').value;
-          } else if (document.getElementById('legswollen1').checked) {
-              var legswollen=document.getElementById('legswollen1').value;
-          }
-          
-          if (document.getElementById('tenderness').checked) {
-              var tenderness=document.getElementById('tenderness').value;
-          } else if (document.getElementById('tenderness1').checked) {
-              var tenderness=document.getElementById('tenderness1').value;
-          }
-          
-          if (document.getElementById('paralysis').checked) {
-              var paralysis=document.getElementById('paralysis').value;
-          } else if (document.getElementById('paralysis1').checked) {
-              var paralysis=document.getElementById('paralysis1').value;
-          }
-          
-          if (document.getElementById('edema').checked) {
-              var edema=document.getElementById('edema').value;
-          } else if (document.getElementById('edema1').checked) {
-              var edema=document.getElementById('edema1').value;
-          }
-          
-          if (document.getElementById('previousdvt').checked) {
-              var previousdvt=document.getElementById('previousdvt').value;
-          } else if (document.getElementById('previousdvt1').checked) {
-              var previousdvt=document.getElementById('previousdvt1').value;
-          }
-          
-          if (document.getElementById('alternative').checked) {
-              var alternative=document.getElementById('alternative').value;
-          } else if (document.getElementById('alternative1').checked) {
-              var alternative=document.getElementById('alternative1').value;
-          }
-          
-          
-          var obj = { "age":age, "ddimer":ddimer, "sex":sex, "cancer":cancer, "bedridden":bedridden, "calf":calf, "veins":veins, "legswollen":legswollen, "tenderness":tenderness, "edema":edema, "paralysis":paralysis, "previousdvt":previousdvt, "alternative":alternative};
-          var f = JSON.stringify(obj);
+                    1. Sex:<br>
+                    <input id="sex" type="radio" name="sex" value="1" checked> Male
+                    <input id="sex1" type="radio" name="sex" value="0"> Female<br>
+                    2. Age:<br>
+                    <input id="age" type="text" name="age"><br>
+                    3. D-dimer:<br>
+                    <input id="ddimer" type="text" name="ddimer"><br>
+                    4. Active Cancer:<br>
+                    (Treatment or palliation within 6 months)<br>
+                    <input id="cancer" type="radio" name="cancer" value="0" checked> No
+                    <input id="cancer1" type="radio" name="cancer" value="1"> Yes<br>
+                    5. Bedridden recently >3 days or major surgery within four weeks:<br>
+                    <input id="bedridden" type="radio" name="bedridden" value="0" checked> No
+                    <input id="bedridden1" type="radio" name="bedridden" value="1"> Yes<br>
+                    6. Calf swelling >3 cm compared to the other leg:<br>
+                    (Measured 10cm below tibial tuberosity)<br>
+                    <input id="calf" type="radio" name="calf" value="0" checked> No
+                    <input id="calf1" type="radio" name="calf" value="1"> Yes<br>
+                    7. Collateral (nonvaricose) superficial veins present:<br>
+                    <input id="veins" type="radio" name="veins" value="0" checked> No
+                    <input id="veins1" type="radio" name="veins" value="1"> Yes<br>
+                    8. Entire leg swollen:<br>
+                    <input id="legswollen" type="radio" name="legswollen" value="0" checked> No
+                    <input id="legswollen1" type="radio" name="legswollen" value="1"> Yes<br>
+                    9. Localized tenderness along the deep venous system:<br>
+                    <input id="tenderness" type="radio" name="tenderness" value="0"checked> No
+                    <input id="tenderness1" type="radio" name="tenderness" value="1"> Yes<br>
+                    10. Pitting edema, confined to symptomatic leg:<br>
+                    <input id="edema" type="radio" name="edema" value="0" checked> No
+                    <input id="edema1" type="radio" name="edema" value="1"> Yes<br>
+                    11. Paralysis, paresis, or recent plaster immobilization of the lower extremity:<br>
+                    <input id="paralysis" type="radio" name="paralysis" value="0" checked> No
+                    <input id="paralysis1" type="radio" name="paralysis" value="1"> Yes<br>
+                    12. Previously documented DVT:<br>
+                    <input id="previousdvt" type="radio" name="previousdvt" value="0" checked> No
+                    <input id="previousdvt1" type="radio" name="previousdvt" value="1"> Yes<br>
+                    13. Alternative diagnosis to DVT as likely or more likely:<br>
+                    <input id="alternative" type="radio" name="alternative" value="0" checked> No
+                    <input id="alternative1" type="radio" name="alternative" value="1"> Yes<br>
+					<div class="container-contact3-form-btn">
+						<button class="contact3-form-btn" name="submit" type="button" value="Submit" onclick="getFormData(); return false;">
+							Submit
+						</button>
+					</div>
+				</form>
+                
+                <span class="contact3-form-subtitle" id="resu1"></span>
+                <span class="contact3-form-subtitle" id="resu2"></span>
+                <span class="contact3-form-subtitle" id="resu"></span>
+                <table style="width:100%" id="tab1">
+                </table>
+			</div>
+		</div>
+	</div>
 
 
+	<div id="dropDownSelect1"></div>
 
-          var layer_1_w = [ [0.375868, 0.126846, 0.437358, -0.00235754, 0.455327, -0.273385, -1.40435, -0.0844931],
-                          [-0.0213534, 0.135957, -0.100803, 0.355688, -0.140092, -0.0746259, 0.650439, 0.227565],
-                          [0.094226, 0.0173916, 0.0983266, -0.0251699, 0.149133, 0.174552, -0.779257, 0.0367795],
-                          [-0.0241223, -0.155858, -0.0369831, -0.192365, -0.00505101, -0.142017, -0.958539, -0.147557],
-                          [-0.268855, 0.118395, -0.163001, 0.101895, -0.246575, -0.178897, 0.100028, -0.254384],
-                          [0.160339, 0.153092, 0.192159, 0.0957191, 0.230666, -0.067639, -1.49417, -0.0247523],
-                          [0.340277, 0.216517, 0.40987, 0.171407, 0.387766, -0.316037, 0.302875, -0.023133],
-                          [0.428756, 0.0908501, 0.143548, 0.287194, 0.206843, -0.302531, -0.483642, -0.059772],
-                          [0.479932, 0.192598, 0.419354, 0.301969, 0.411658, 0.000576801, -1.26064, 0.0139035],
-                          [0.255186, -0.180252, 0.269607, -0.361746, 0.29446, -0.0491943, -0.727802, 0.0634003],
-                          [-0.484804, 0.443019, -0.880325, 0.392103, -0.850629, 0.0364676, -0.589107, -0.112881],
-                          [0.455271, -0.276002, 0.606916, -0.0580597, 0.391407, 0.00975767, 0.573585, -0.0423459],
-                          [0.0346804, -1.22799, 0.280657, -1.1009, 0.315499, -2.02521, -0.654263, -1.96034] ];
-                          
-          var layer_1_b = [0.137748, 0.193915, -0.0203845, 0.28809, -0.0401669, 0.052982, -0.350391, 0.147749];
-          
-          var layer_2_w = [0.630805, -0.807953, 0.52583, -0.879531, 0.501376, -1.50693, 1.25433, -1.15299];
-          
-          var neurons = [];
-          
-          var layer_2_b = -0.0664266;
-
-          var age_mean = 63.545966228893057;
-          var age_std = 17.300308562250514;
-          var dd_mean = 2031.3897748592869;
-          var dd_std = 3376.1581450058466;
-          
-          var my_age = (age-age_mean)/age_std;
-          var my_ddi = (ddimer-dd_mean)/dd_std;
-          
-          //var my_features = new Array(13);
-
-          var neuron = 0.0;
-          for (i = 0; i < 8; i++) {
-              neuron = sex*layer_1_w[0][i];
-              neuron += my_age*layer_1_w[1][i];
-              neuron += cancer*layer_1_w[2][i];
-              neuron += paralysis*layer_1_w[3][i];
-              neuron += bedridden*layer_1_w[4][i];
-              neuron += tenderness*layer_1_w[5][i];
-              neuron += legswollen*layer_1_w[6][i];
-              neuron += calf*layer_1_w[7][i];
-              neuron += edema*layer_1_w[8][i];
-              neuron += veins*layer_1_w[9][i];
-              neuron += alternative*layer_1_w[10][i];
-              neuron += previousdvt*layer_1_w[11][i];
-              neuron += my_ddi*layer_1_w[12][i];
-              neuron += layer_1_b[i];
-              neurons.push(Math.max(neuron, 0.0));
-          }
-          
-          neuron = layer_2_b;
-          for (i = 0; i < 8; i++) {
-              neuron += neurons[i]*layer_2_w[i];
-          }
-          
-          var probability = 1.0 / (1.0 + Math.E **(-1.0 * neuron));
-          
-          
-          var wells_score = 1.0*cancer + 1.0*paralysis + 1.0*bedridden + 1.0*tenderness + 1.0*legswollen + 1.0*calf + 1.0*edema + 1.0*veins + (-2.0*alternative) + 1.0*previousdvt;
-          var nice_result = "0"
-          if (wells_score >= 2.0) {
-              nice_result = "1";
-          }
-          if (ddimer >= 500.0) {
-              nice_result = "1";
-          }
-          
-          var top = "The ONN score is "
-          //var bot = " that the patient has a DVT"
-          top = top.concat(probability.toFixed(3))
-          document.getElementById("resu").innerHTML = top;
-          top = "The patient has a Wells Score of "
-          top = top.concat(wells_score)
-          document.getElementById("resu1").innerHTML = top;
-          if (nice_result==="1") {
-              top = "NICE regulations recommend that you scan the patient"
-          } else {
-              top = "NICE regulations recommend that you do not scan the patient"
-          }
-          document.getElementById("resu2").innerHTML = top;
-
-
-      }
-  
-  </script>
-
-  <body id="page-top">
-
-    <!-- Navigation -->
-    <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#download">Download</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#features">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav> -->
-
-    <header class="masthead">
-      <div class="container h-100">
-        <div class="row h-100">
-          <div class="col-lg-7 my-auto">
-            <div class="header-content mx-auto">
-              <!--<h1 class="mb-5">New Age is an app landing page that will help you beautifully showcase your new mobile app, or anything else!</h1>
-              <a href="#download" class="btn btn-outline btn-xl js-scroll-trigger">Start Now for Free!</a>-->
-              <form>
-                  1. Sex:<br>
-                  <input id="sex" type="radio" name="sex" value="1" checked> Male
-                  <input id="sex1" type="radio" name="sex" value="0"> Female<br>
-                  2. Age:<br>
-                  <input id="age" type="text" name="age"><br>
-                  3. D-dimer:<br>
-                  <input id="ddimer" type="text" name="ddimer"><br>
-                  4. Active Cancer:<br>
-                  (Treatment or palliation within 6 months)<br>
-                  <input id="cancer" type="radio" name="cancer" value="0" checked> No
-                  <input id="cancer1" type="radio" name="cancer" value="1"> Yes<br>
-                  5. Bedridden recently >3 days or major surgery within four weeks:<br>
-                  <input id="bedridden" type="radio" name="bedridden" value="0" checked> No
-                  <input id="bedridden1" type="radio" name="bedridden" value="1"> Yes<br>
-                  6. Calf swelling >3 cm compared to the other leg:<br>
-                  (Measured 10cm below tibial tuberosity)<br>
-                  <input id="calf" type="radio" name="calf" value="0" checked> No
-                  <input id="calf1" type="radio" name="calf" value="1"> Yes<br>
-                  7. Collateral (nonvaricose) superficial veins present:<br>
-                  <input id="veins" type="radio" name="veins" value="0" checked> No
-                  <input id="veins1" type="radio" name="veins" value="1"> Yes<br>
-                  8. Entire leg swollen:<br>
-                  <input id="legswollen" type="radio" name="legswollen" value="0" checked> No
-                  <input id="legswollen1" type="radio" name="legswollen" value="1"> Yes<br>
-                  9. Localized tenderness along the deep venous system:<br>
-                  <input id="tenderness" type="radio" name="tenderness" value="0" checked> No
-                  <input id="tenderness1" type="radio" name="tenderness" value="1"> Yes<br>
-                  10. Pitting edema, confined to symptomatic leg:<br>
-                  <input id="edema" type="radio" name="edema" value="0" checked> No
-                  <input id="edema1" type="radio" name="edema" value="1"> Yes<br>
-                  11. Paralysis, paresis, or recent plaster immobilization of the lower extremity:<br>
-                  <input id="paralysis" type="radio" name="paralysis" value="0" checked> No
-                  <input id="paralysis1" type="radio" name="paralysis" value="1"> Yes<br>
-                  12. Previously documented DVT:<br>
-                  <input id="previousdvt" type="radio" name="previousdvt" value="0" checked> No
-                  <input id="previousdvt1" type="radio" name="previousdvt" value="1"> Yes<br>
-                  13. Alternative diagnosis to DVT as likely or more likely:<br>
-                  <input id="alternative" type="radio" name="alternative" value="0" checked> No
-                  <input id="alternative1" type="radio" name="alternative" value="1"> Yes<br>
-                      <input class="button" name="submit" type="submit" value="Submit" onclick="getFormData(); return false;"/>
-              </form>
-            </div>
-          </div>
-          <div class="col-lg-5 my-auto">
-            <div class="header-content mx-auto">
-                <p id="resu" style="width:500px">
-                </p>
-                <p id="resu1" style="width:500px">
-                </p>
-                <p id="resu2" style="width:500px">
-                </p>
-                <p id="descrip" style="width:500px">
-                The plot below should be used to interpret the ONN score.  Given a specific value for the ONN score, if one chooses not to send the patient for an ultrasound, the black and red lines indicate the likelihood that not scanning the patient will result in a false negative.  As an example, not scanning a cohort of patients with ONN scores of 0.25 will result in a false negative rate of 1.5%.
-                </p>
-                  <div id="myDiv" style="height:500px; width:500px"><img src="FNR.png" ></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-
-
-    <footer>
-      <div class="container">
-        <p>&copy; Dr. Harley Katz and Dr. John Willan 2018. All Rights Reserved.</p>
-      </div>
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="js/new-age.min.js"></script>
-
-  </body>
-
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<script>
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/5.2.0/math.js"></script> -->
+    <script src="js/Math.js"></script>
+    <script>
+        
+        function getFormData(){
+            
+            var age=document.getElementById('age').value;
+            
+            var ddimer=document.getElementById('ddimer').value;
+            
+            if (document.getElementById('sex').checked) {
+                var sex=document.getElementById('sex').value;
+            } else if (document.getElementById('sex1').checked) {
+                var sex=document.getElementById('sex1').value;
+            }
+            
+            if (document.getElementById('cancer').checked) {
+                var cancer=document.getElementById('cancer').value;
+            } else if (document.getElementById('cancer1').checked) {
+                var cancer=document.getElementById('cancer1').value;
+            }
+            
+            if (document.getElementById('bedridden').checked) {
+                var bedridden=document.getElementById('bedridden').value;
+            } else if (document.getElementById('bedridden1').checked) {
+                var bedridden=document.getElementById('bedridden1').value;
+            }
+            
+            if (document.getElementById('calf').checked) {
+                var calf=document.getElementById('calf').value;
+            } else if (document.getElementById('calf1').checked) {
+                var calf=document.getElementById('calf1').value;
+            }
+            
+            if (document.getElementById('veins').checked) {
+                var veins=document.getElementById('veins').value;
+            } else if (document.getElementById('veins1').checked) {
+                var veins=document.getElementById('veins1').value;
+            }
+            
+            if (document.getElementById('legswollen').checked) {
+                var legswollen=document.getElementById('legswollen').value;
+            } else if (document.getElementById('legswollen1').checked) {
+                var legswollen=document.getElementById('legswollen1').value;
+            }
+            
+            if (document.getElementById('tenderness').checked) {
+                var tenderness=document.getElementById('tenderness').value;
+            } else if (document.getElementById('tenderness1').checked) {
+                var tenderness=document.getElementById('tenderness1').value;
+            }
+            
+            if (document.getElementById('paralysis').checked) {
+                var paralysis=document.getElementById('paralysis').value;
+            } else if (document.getElementById('paralysis1').checked) {
+                var paralysis=document.getElementById('paralysis1').value;
+            }
+            
+            if (document.getElementById('edema').checked) {
+                var edema=document.getElementById('edema').value;
+            } else if (document.getElementById('edema1').checked) {
+                var edema=document.getElementById('edema1').value;
+            }
+            
+            if (document.getElementById('previousdvt').checked) {
+                var previousdvt=document.getElementById('previousdvt').value;
+            } else if (document.getElementById('previousdvt1').checked) {
+                var previousdvt=document.getElementById('previousdvt1').value;
+            }
+            
+            if (document.getElementById('alternative').checked) {
+                var alternative=document.getElementById('alternative').value;
+            } else if (document.getElementById('alternative1').checked) {
+                var alternative=document.getElementById('alternative1').value;
+            }
+            
+            
+            var obj = { "age":age, "ddimer":ddimer, "sex":sex, "cancer":cancer, "bedridden":bedridden, "calf":calf, "veins":veins, "legswollen":legswollen, "tenderness":tenderness, "edema":edema, "paralysis":paralysis, "previousdvt":previousdvt, "alternative":alternative};
+            var f = JSON.stringify(obj);
+            
+            
+            
+            var layer_1_w = [ [0.375868, 0.126846, 0.437358, -0.00235754, 0.455327, -0.273385, -1.40435, -0.0844931],
+                             [-0.0213534, 0.135957, -0.100803, 0.355688, -0.140092, -0.0746259, 0.650439, 0.227565],
+                             [0.094226, 0.0173916, 0.0983266, -0.0251699, 0.149133, 0.174552, -0.779257, 0.0367795],
+                             [-0.0241223, -0.155858, -0.0369831, -0.192365, -0.00505101, -0.142017, -0.958539, -0.147557],
+                             [-0.268855, 0.118395, -0.163001, 0.101895, -0.246575, -0.178897, 0.100028, -0.254384],
+                             [0.160339, 0.153092, 0.192159, 0.0957191, 0.230666, -0.067639, -1.49417, -0.0247523],
+                             [0.340277, 0.216517, 0.40987, 0.171407, 0.387766, -0.316037, 0.302875, -0.023133],
+                             [0.428756, 0.0908501, 0.143548, 0.287194, 0.206843, -0.302531, -0.483642, -0.059772],
+                             [0.479932, 0.192598, 0.419354, 0.301969, 0.411658, 0.000576801, -1.26064, 0.0139035],
+                             [0.255186, -0.180252, 0.269607, -0.361746, 0.29446, -0.0491943, -0.727802, 0.0634003],
+                             [-0.484804, 0.443019, -0.880325, 0.392103, -0.850629, 0.0364676, -0.589107, -0.112881],
+                             [0.455271, -0.276002, 0.606916, -0.0580597, 0.391407, 0.00975767, 0.573585, -0.0423459],
+                             [0.0346804, -1.22799, 0.280657, -1.1009, 0.315499, -2.02521, -0.654263, -1.96034] ];
+                             
+                             var layer_1_b = [0.137748, 0.193915, -0.0203845, 0.28809, -0.0401669, 0.052982, -0.350391, 0.147749];
+                             
+                             var layer_2_w = [0.630805, -0.807953, 0.52583, -0.879531, 0.501376, -1.50693, 1.25433, -1.15299];
+                             
+                             var neurons = [];
+                             
+                             var layer_2_b = -0.0664266;
+                             
+                             var age_mean = 63.545966228893057;
+                             var age_std = 17.300308562250514;
+                             var dd_mean = 2031.3897748592869;
+                             var dd_std = 3376.1581450058466;
+                             
+                             var my_age = (age-age_mean)/age_std;
+                             var my_ddi = (ddimer-dd_mean)/dd_std;
+                             
+                             //var my_features = new Array(13);
+                             
+                             var neuron = 0.0;
+                             for (i = 0; i < 8; i++) {
+                                 neuron = sex*layer_1_w[0][i];
+                                 neuron += my_age*layer_1_w[1][i];
+                                 neuron += cancer*layer_1_w[2][i];
+                                 neuron += paralysis*layer_1_w[3][i];
+                                 neuron += bedridden*layer_1_w[4][i];
+                                 neuron += tenderness*layer_1_w[5][i];
+                                 neuron += legswollen*layer_1_w[6][i];
+                                 neuron += calf*layer_1_w[7][i];
+                                 neuron += edema*layer_1_w[8][i];
+                                 neuron += veins*layer_1_w[9][i];
+                                 neuron += alternative*layer_1_w[10][i];
+                                 neuron += previousdvt*layer_1_w[11][i];
+                                 neuron += my_ddi*layer_1_w[12][i];
+                                 neuron += layer_1_b[i];
+                                 neurons.push(Math.max(neuron, 0.0));
+                             }
+                             
+                             neuron = layer_2_b;
+                             for (i = 0; i < 8; i++) {
+                                 neuron += neurons[i]*layer_2_w[i];
+                             }
+                             
+                             var probability = 1.0 / (1.0 + Math.E **(-1.0 * neuron));
+                             
+                             
+                             var wells_score = 1.0*cancer + 1.0*paralysis + 1.0*bedridden + 1.0*tenderness + 1.0*legswollen + 1.0*calf + 1.0*edema + 1.0*veins + (-2.0*alternative) + 1.0*previousdvt;
+                             var nice_result = "0"
+                             if (wells_score >= 2.0) {
+                                 nice_result = "1";
+                             }
+                             if (ddimer >= 500.0) {
+                                 nice_result = "1";
+                             }
+                             
+                             if (isNaN(age)) {
+                                 top = "Please use a valid age ";
+                                 document.getElementById("resu").innerHTML = top;
+                                 document.getElementById("resu1").innerHTML = ""
+                                 document.getElementById("resu2").innerHTML = ""
+                                 document.getElementById("tab1").innerHTML = ""
+                             } else if (isNaN(ddimer)) {
+                                 top = "Please use a valid D-Dimer ";
+                                 document.getElementById("resu").innerHTML = top;
+                                 document.getElementById("resu1").innerHTML = ""
+                                 document.getElementById("resu2").innerHTML = ""
+                                 document.getElementById("tab1").innerHTML = ""
+                             } else if (age < 18.0) {
+                                 top = "Please use an age > 18 ";
+                                 document.getElementById("resu").innerHTML = top;
+                                 document.getElementById("resu1").innerHTML = ""
+                                 document.getElementById("resu2").innerHTML = ""
+                                 document.getElementById("tab1").innerHTML = ""
+                             } else if (age > 100.0) {
+                                 top = "Please use an age < 100 ";
+                                 document.getElementById("resu").innerHTML = top;
+                                 document.getElementById("resu1").innerHTML = ""
+                                 document.getElementById("resu2").innerHTML = ""
+                                 document.getElementById("tab1").innerHTML = ""
+                             } else if (ddimer <= 0.0) {
+                                 top = "Please use a positive D-Dimer value ";
+                                 document.getElementById("resu").innerHTML = top;
+                                 document.getElementById("resu1").innerHTML = ""
+                                 document.getElementById("resu2").innerHTML = ""
+                                 document.getElementById("tab1").innerHTML = ""
+                             } else if (ddimer > 50000.0) {
+                                 top = "Your D-Dimer value is quite high, is this correct? ";
+                                 document.getElementById("resu").innerHTML = top;
+                                 document.getElementById("resu1").innerHTML = ""
+                                 document.getElementById("resu2").innerHTML = ""
+                                 document.getElementById("tab1").innerHTML = ""
+                             } else {
+                                 var top = "The ONN score is "
+                                 //var bot = " that the patient has a DVT"
+                                 top = top.concat(probability.toFixed(3))
+                                 document.getElementById("resu").innerHTML = top;
+                                 top = "The patient has a Wells Score of "
+                                 top = top.concat(wells_score)
+                                 document.getElementById("resu1").innerHTML = top;
+                                 if (nice_result==="1") {
+                                     top = "Current practice at the Oxford Haemophilia and Thrombosis Centre is to scan this patient"
+                                 } else {
+                                     top = "Current practice at the Oxford Haemophilia and Thrombosis Centre is to not scan this patient"
+                                 }
+                                 document.getElementById("resu2").innerHTML = top;
+                                 top = "<tr><th>ONN Threshold <br> (scan if > this number)</th><th>Risk of missing DVT</th></tr><tr><td>ONN>0.02</td><td>0%</td></tr><tr><td>ONN>0.03</td><td>0%</td></tr><tr><td>ONN>0.05</td><td>0%</td></tr><tr><td>ONN>0.10</td><td>0.29%</td></tr><tr><td>ONN>0.15</td><td>0.58%</td></tr><tr><td>ONN>0.20</td><td>0.70%</td></tr>";
+                                 document.getElementById("tab1").innerHTML = top;
+                             }
+        }
+    
+        </script>
+</body>
 </html>
